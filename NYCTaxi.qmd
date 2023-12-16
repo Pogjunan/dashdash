@@ -46,7 +46,7 @@ df1 = _df.loc[:,['speed','pickup_hour','dayofweek']].groupby(['pickup_hour','day
 df1.dayofweek = df1.dayofweek.map(week_dct)
 df1
 
-fig = px.density_heatmap(
+fig1 = px.density_heatmap(
     data_frame=df1,
     x='pickup_hour',
     y='dayofweek',
@@ -77,10 +77,10 @@ fig2 = px.density_heatmap(
 ```{python}
 #| title: 요일,시간에 따른 평균속력 시각화  
 
-fig['layout']['coloraxis']['colorbar']['title']['text'] = '평균속력'
-fig['layout']['xaxis']['title']['text'] = 'pickup 시간'
-fig['layout']['yaxis']['title']['text'] = '요일'
-fig.show()
+fig1['layout']['coloraxis']['colorbar']['title']['text'] = '평균속력'
+fig1['layout']['xaxis']['title']['text'] = 'pickup 시간'
+fig1['layout']['yaxis']['title']['text'] = '요일'
+fig1.show()
 ```
 
 ```{python}
@@ -117,7 +117,7 @@ fig3 = px.line_mapbox(
     lon='longitude',
     color='speedy',
     line_group='id',
-    center={'lat': 40.7322, 'lon': -73.9052},
+    center={'lat': 40.7322, 'lon': -74.0052},
     mapbox_style='carto-positron',
     zoom=11,
     width=750,
@@ -139,17 +139,18 @@ scatter_data = px.scatter_mapbox(
     mapbox_style='carto-positron',
     zoom=11,
     width=750,
-    height=600
-    ).data
+    height=600    
+).data
 
 # 스캐터 포인트(승하차 위치) 트레이스를 추가하고 범례 이름을 업데이트합니다.
 for sd in scatter_data:
     sd.name = f'{sd.name} (pickup/dropoff)'
-    fig.add_trace(sd)
-fig.update_traces(
+    fig3.add_trace(sd)
+fig3.update_traces(
     line={'width': 1},
     opacity=0.8,
-    selector={'type': 'scattermapbox'}  
+    selector={'type': 'scattermapbox'}  # 이 선택자는 스캐터 포인트에만 적용됩니다.
 )
+fig3.show(config={'scrollZoom': False})
 fig3.show()
 ```
