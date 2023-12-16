@@ -88,6 +88,29 @@ df_right = pd.concat([transform(df) for i, df in df_small.groupby('id')]).reset_
 df_small2 = df_left.merge(df_right).sort_values(['speedy'])
 
 
+
+
+```
+
+# 기말고사1-(1),(2)
+
+```{python}
+#| title: 요일,시간에 따른 평균속력 시각화  
+
+
+fig1.show()
+```
+
+```{python}
+#| title: 요일,시간에 따른 평균이동거리 시각화    
+
+fig2.show()
+```
+
+# 기말고사1-(3)
+
+```{python}
+#| title: 속력별 경로 시각화
 fig3 = px.line_mapbox(
     data_frame=df_small2,
     lat='latitude',
@@ -130,28 +153,6 @@ fig3.update_traces(
 )
 
 
-
-```
-
-# 기말고사1-(1),(2)
-
-```{python}
-#| title: 요일,시간에 따른 평균속력 시각화  
-
-
-fig1.show()
-```
-
-```{python}
-#| title: 요일,시간에 따른 평균이동거리 시각화    
-
-fig2.show()
-```
-
-# 기말고사1-(3)
-
-```{python}
-#| title: 속력별 경로 시각화
-fig3.show(config={'scrollZoom': False})
+fig3.show()
 
 ```
