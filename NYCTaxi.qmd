@@ -53,7 +53,22 @@ fig = px.density_heatmap(
     z='speed',
     nbinsx=24,
     nbinsy=7,
-    height=300
+    height=300)
+    
+df2 = _df.loc[:,['dist','pickup_hour','dayofweek']].groupby(['pickup_hour','dayofweek']).agg('mean')\
+.reset_index().sort_values('dayofweek').reset_index(drop=True)
+df2.dayofweek = df2.dayofweek.map(week_dct)
+df2
+fig2 = px.density_heatmap(
+    data_frame=df2,
+    x='pickup_hour',
+    y='dayofweek',
+    z='dist',
+    nbinsx=24,
+    nbinsy=7,
+    height=300)
+
+   
 )
 ```
 
@@ -69,13 +84,19 @@ fig.show()
 ```
 
 ```{python}
-#| title: 요일,시간에 따른 평균이동거리 시각화        
-#fig2.show()
+#| title: 요일,시간에 따른 평균이동거리 시각화    
+fig2
+fig2['layout']['coloraxis']['colorbar']['title']['text'] = '평균이동거리'
+fig2['layout']['xaxis']['title']['text'] = 'pickup 시간'
+fig2['layout']['yaxis']['title']['text'] = '요일'
+fig2.show()
+fig2.show()
 ```
 
 # 기말고사1-(3)
 
 ```{python}
 #| title: 속력별 경로 시각화
+
 #fig3.show()
 ```
