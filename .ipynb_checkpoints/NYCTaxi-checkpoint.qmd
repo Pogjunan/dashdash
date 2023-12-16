@@ -68,7 +68,7 @@ fig2 = px.density_heatmap(
     nbinsy=7,
     height=300)
 
-
+speed = pd.Series(df_small.speed)
 speedy =pd.qcut(speed,4,labels=['매우느림','조금느림','조금빠름','매우빠름'])
 df_small['speedy']=speedy
 pcol = ['pickup_datetime', 'pickup_longitude', 'pickup_latitude', 'pickup_hour']
@@ -111,8 +111,8 @@ scatter_data = px.scatter_mapbox(
     mapbox_style='carto-positron',
     zoom=11,
     width=750,
-    height=600    
-).data
+    height=600
+    ).data
 
 # 스캐터 포인트(승하차 위치) 트레이스를 추가하고 범례 이름을 업데이트합니다.
 for sd in scatter_data:
@@ -124,7 +124,6 @@ fig.update_traces(
     selector={'type': 'scattermapbox'}  
 )
 #fig3.show(config={'scrollZoom': False})
-)
 ```
 
 # 기말고사1-(1),(2)
