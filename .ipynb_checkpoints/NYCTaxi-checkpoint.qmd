@@ -86,31 +86,6 @@ def transform(df):
 df_left = df_small.drop(pcol+dcol,axis=1)
 df_right = pd.concat([transform(df) for i, df in df_small.groupby('id')]).reset_index(drop=True)
 df_small2 = df_left.merge(df_right).sort_values(['speedy'])
-
-
-
-
-```
-
-# 기말고사1-(1),(2)
-
-```{python}
-#| title: 요일,시간에 따른 평균속력 시각화  
-
-
-fig1.show()
-```
-
-```{python}
-#| title: 요일,시간에 따른 평균이동거리 시각화    
-
-fig2.show()
-```
-
-# 기말고사1-(3)
-
-```{python}
-#| title: 속력별 경로 시각화
 fig3 = px.line_mapbox(
     data_frame=df_small2,
     lat='latitude',
@@ -146,13 +121,35 @@ scatter_data = px.scatter_mapbox(
 for sd in scatter_data:
     sd.name = f'{sd.name} (pickup/dropoff)'
     fig3.add_trace(sd)
-fig3.update_traces(
+fig3 = fig3.update_traces(
     line={'width': 1},
     opacity=0.8,
     selector={'type': 'scattermapbox'}  # 이 선택자는 스캐터 포인트에만 적용됩니다.
 )
 
 
+
+```
+
+# 기말고사1-(1),(2)
+
+```{python}
+#| title: 요일,시간에 따른 평균속력 시각화  
+
+
+fig1.show()
+```
+
+```{python}
+#| title: 요일,시간에 따른 평균이동거리 시각화    
+
+fig2.show()
+```
+
+# 기말고사1-(3)
+
+```{python}
+#| title: 속력별 경로 시각화
 fig3.show()
 
 ```
