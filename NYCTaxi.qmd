@@ -114,13 +114,13 @@ for trace in fig3.data:
 #| title: 요일,시간에 따른 평균속력 시각화  
 
 
-#fig1.show()
+fig1.show()
 ```
 
 ```{python}
 #| title: 요일,시간에 따른 평균이동거리 시각화    
 
-#fig2.show()
+fig2.show()
 ```
 
 # 기말고사1-(3)
@@ -149,7 +149,7 @@ for trace in scatter_data.data:
 fig3.update_traces(
     line={'width': 1},
     opacity=0.8,
-    selector={'type': 'scattermapbox'}  # This selector is incorrect; it should target line traces
+    selector=dict(type='scattermapbox')
 )
 
 # Show fig3 without scrollZoom
