@@ -1,7 +1,7 @@
 ---
 title: "NYCTaxi"
-author: "전준한"
-format: dashboard
+author: "junhan"
+format: asciidoc
 execute: 
   enabled: true
   cache: false
@@ -141,16 +141,16 @@ scatter_data = px.scatter_mapbox(
 )
 
 # Add scatter data to fig3 and update names
-#for trace in scatter_data.data:
-#    trace.name = f'{trace.name} (pickup/dropoff)'
-#    fig3.add_trace(trace)
+for trace in scatter_data.data:
+    trace.name = f'{trace.name} (pickup/dropoff)'
+    fig3.add_trace(trace)
 
 # Update line traces, not scatter traces
-#fig3.update_traces(
-#    line={'width': 1},
-#    opacity=0.8,
-#    selector=dict(type='scattermapbox')
-#)
+fig3.update_traces(
+    line={'width': 1},
+    opacity=0.8,
+    selector=dict(type='scattermapbox')
+)
 
 # Show fig3 without scrollZoom
 fig3.show()
