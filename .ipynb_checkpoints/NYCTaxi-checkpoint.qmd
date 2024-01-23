@@ -139,20 +139,18 @@ scatter_data = px.scatter_mapbox(
     width=750,
     height=600    
 )
-# Clear existing traces in fig3
-fig3.data = []
 
 # Add scatter data to fig3 and update names
-for trace in scatter_data.data:
-    trace.name = f'{trace.name} (pickup/dropoff)'
-    fig3.add_trace(trace)
+#for trace in scatter_data.data:
+#    trace.name = f'{trace.name} (pickup/dropoff)'
+#    fig3.add_trace(trace)
 
-# Update all traces in fig3
-fig3.update_traces(
-    line={'width': 1},
-    opacity=0.8,
-    selector=dict(type='scattermapbox')
-)
+# Update line traces, not scatter traces
+#fig3.update_traces(
+#    line={'width': 1},
+#    opacity=0.8,
+#    selector=dict(type='scattermapbox')
+#)
 
 # Show fig3 without scrollZoom
 fig3.show()
